@@ -1,0 +1,28 @@
+---
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+
+dependencies:
+  - python >= 3.7,<3.8
+  - pip = 21.0.1
+  - flask = 2.0.1
+  - flask-cors = 3.0.10
+  - viennarna = 2.4.17
+  - libiconv = 1.16
+  - uWSGI = 2.0.19.1
+  - pip:
+      - dnachisel == 3.2.6
+      - pytest == 6.2.2
+      - redis == 3.5.3
+      - celery == 4.4.7
+      - Biopython == 1.78
+      - proglog == 0.1.9
+      - docopt == 0.6.2
+      - flametree == 0.1.11
+      - python_codon_tables == 0.1.10
+      - pydantic == 1.8.1
+      - scipy == 1.7.0
+      - loguru == 0.5.3
+      - flower == 0.9.7

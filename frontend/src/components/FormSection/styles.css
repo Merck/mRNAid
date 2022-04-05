@@ -1,0 +1,36 @@
+.FormSection .ant-avatar {
+  width: 30px;
+  height: 30px;
+  line-height: 32px;
+  background: #758fce;
+  font-size: 18px;
+}
+
+.FormSection h1 {
+  line-height: 32px;
+  color: #334d5b;
+}
+
+.FormSection-number--col {
+  min-width: 32px;
+}
+
+.ant-collapse-header .FormSection h1 {
+  margin-bottom: 0;
+}
+
+.ant-collapse > .ant-collapse-item > .ant-collapse-header .arrow {
+  line-height: 58px !important;
+}
+
+.FormSectionNotCollapsing {
+  margin-top: 30px;
+}
+
+.ant-collapse > .ant-collapse-item .ant-form-item {
+  margin-bottom: 0;
+}
+
+.ant-form > .ant-collapse {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,43 @@
+.w-100{
+    width:100%;
+    table-layout: fixed !important;
+}
+table td,
+table th {
+  border: 1px solid #289187;
+  padding: 5px;
+}
+td{
+ overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+table thead th:nth-child(2){
+    width: 50%;
+  }
+  .break-word{
+    word-break: break-all;
+  }
+  
+  .recharts-surface{
+    height: 90% !important;
+    width: 60% !important;
+}
+.p-12{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.border-all{
+  border-right: 1px solid #e8e8e8;
+  text-align: center;
+}
+.ant-tabs .ant-tabs-left-bar{
+  width: 7.4%;
+}
+.ant-tabs .ant-tabs-left-bar .ant-tabs-tab {
+  font-size: 14px;
+}
+.report{
+  margin-right: 10px;
+}

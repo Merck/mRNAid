@@ -1,0 +1,40 @@
+
+.editable-cell {
+    position: relative;
+}
+
+.editable-cell-value-wrap {
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.editable-row:hover .editable-cell-value-wrap {
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 4px 11px;
+}
+
+.ant-input-number {
+    width: 100% !important;
+}
+
+th.PASFragmentSeqCol {
+    text-align: center !important;
+}
+
+
+.PASResultTableCnt {
+    height: 100% !important;
+    overflow: hidden !important;
+}
+.ant-row-custom{
+    margin-bottom: 10px !important;
+}
+.ant-input-group-addon{
+    width:25% !important
+}
+
+
+
+
+

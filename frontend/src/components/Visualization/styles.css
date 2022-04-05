@@ -1,0 +1,13 @@
+svg{
+    /* min-height: 50% !important ;
+    height: 40% !important; */
+    width:auto !important;
+    
+  }
+  .bg-grey{
+    background-color: #f1f5f7;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }

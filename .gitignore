@@ -1,0 +1,9 @@
+env/
+**/__pycache__
+**/**/__pycache__
+.idea/
+.DS_Store
+# Redis files
+redis*
+*.rdb
+.scannerwork/   

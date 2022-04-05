@@ -1,0 +1,15 @@
+.ant-popover{
+    left: 20% !important;
+    
+    max-width: 30%
+}
+.ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow{
+    left: 38% !important;
+}
+.question-circle{
+color:#269487;
+font-size: 17px !important;
+}
+.ant-radio-button-wrapper{
+    margin-right: 10px;
+}

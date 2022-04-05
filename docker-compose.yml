@@ -1,0 +1,61 @@
+version: "3.7"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: backend
+    restart: always
+    volumes:
+      - ./backend/flask_app/logs/:/backend/flask_app/logs/
+    environment:
+      - APP_NAME=backend
+      - CELERY_BROKER_URL=redis://redis_db:6379
+      - CELERY_RESULT_BACKEND=redis://redis_db:6379
+      - LOG_FILE=./logs/logs.log
+      - BACKEND_OBJECTIVES_DATA=../common/objectives/data
+      - PYTHONPATH=../common:../common/objectives:../common/constraints\
+    expose:
+      - 8080
+    depends_on:
+      - redis_db
+
+  redis_db:
+    image: redis
+    ports:
+      - "6379:6379"
+
+  worker:
+    build: ./backend
+    container_name: worker
+    restart: always
+    volumes:
+      - ./backend/flask_app/logs/:/backend/flask_app/logs/
+    environment:
+      - CELERY_BROKER_URL=redis://redis_db:6379
+      - CELERY_RESULT_BACKEND=redis://redis_db:6379
+      - LOG_FILE=./logs/logs.log
+      - BACKEND_OBJECTIVES_DATA=../common/objectives/data
+      - PYTHONPATH=../common:../common/objectives:../common/constraints\
+    command: celery -A tasks worker --loglevel=info
+    user: nobody
+    depends_on:
+      - redis_db
+
+  flower:
+    image: mher/flower
+    environment:
+      - CELERY_BROKER_URL=redis://redis_db:6379
+      - CELERY_RESULT_BACKEND=redis://redis_db:6379
+    ports:
+      - "5555:5555"
+    depends_on:
+      - worker
+
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    restart: always
+    ports:
+      - "80:80"
