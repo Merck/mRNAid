@@ -11,8 +11,7 @@ More information about the tool and experiments performed for its evaluation is 
 >Martin Spale, Anja Muzdalo, Constance Yeo, Joanna Wardyn, Petr Mejzlik, Brian Henry, Anthony W Partridge and 
 >Danny A. Bitton: **mRNAid, an Open-Source Platform for Therapeutic mRNA Design and Optimization Strategies**, 2022
 > 
->[biorXiv link](https://www.biorxiv.org/<ID>)
-
+>[bioRxiv link](https://www.biorxiv.org/content/10.1101/2022.04.04.486952v1)
 
 
 
