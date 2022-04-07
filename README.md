@@ -32,7 +32,7 @@ Navigate to the project folder and execute:
 docker-compose up --build
 ```
 
-The tool will be available at [http://localhost/](http://localhost/).
+The tool will be available at [https://mrnaid.dichlab.org](https://mrnaid.dichlab.org)
 
 ### 2. Without docker
 
