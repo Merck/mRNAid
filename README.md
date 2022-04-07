@@ -3,7 +3,7 @@
 mRNAid is an experimentally validated open-source tool for optimization and visualisation of mRNA molecules. It features
  different optimization strategies based on user preferences.
 
-mRNAid is available at: [http://hostname.org](http://hostname.org)
+mRNAid is available at: [https://mrnaid.dichlab.org](https://mrnaid.dichlab.org)
 
 More information about the tool and experiments performed for its evaluation is available in the following publication:
 
@@ -32,7 +32,7 @@ Navigate to the project folder and execute:
 docker-compose up --build
 ```
 
-The tool will be available at [https://mrnaid.dichlab.org](https://mrnaid.dichlab.org)
+The tool will be available at [http://localhost/](http://localhost/)
 
 ### 2. Without docker
 
