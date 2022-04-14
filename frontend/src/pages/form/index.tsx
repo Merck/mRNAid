@@ -196,7 +196,14 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
                 </>
               }
             >
-              {getFieldDecorator('entropyWindowSize')(<Input type="number" />)}
+              {getFieldDecorator('entropyWindowSize', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Entrophy Window size is required',
+                },
+              ],
+            })(<Input type="number" />)}
             </Form.Item>
 
             <Form.Item label="Output file name" hasFeedback>

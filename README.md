@@ -136,7 +136,7 @@ cp ./config/nginx.conf /etc/nginx/conf.d/
 
 * Move build files to the corresponding nginx directory
 ```bash
-cp -R ./build /usr/share/nginx/html
+cp -R ./build/* /usr/share/nginx/html
 ```
 
 * Restart nginx web server

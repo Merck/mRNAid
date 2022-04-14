@@ -56,7 +56,7 @@ def optimization_evaluation_task(parameters: dict) -> str:
             else:
                 pass
 
-    evaluator = Evaluation(result, parameters)
+    evaluator = Evaluation(list(set(result)), parameters)
     final_response = evaluator.get_evaluation()
     final_response["input_parameters"] = parameters.dict()
     return json.dumps(final_response)

@@ -93,7 +93,7 @@ class SavePdf extends React.PureComponent<SavePdfProps> {
             </View>
             <View style={styles.row}>
               <Text style={styles.column}>Window Size for local GC Content: {inputParameters.GC_window_size}</Text>
-              <Text style={styles.column}>Entrophy Window size: {inputParameters.entropy_window}</Text>
+              <Text style={styles.column}>Entropy Window size: {inputParameters.entropy_window}</Text>
             </View>
           </View>
           <View>
