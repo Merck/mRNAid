@@ -139,7 +139,7 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
         </FormSection>
 
         <CodonUsage index={2} form={form} />
-        <FormSection index={3} title="Avoid Motifs" open={false}>
+        <FormSection index={3} title="Avoid Motifs" open={true}>
           <></>
           <Form.Item>
             {getFieldDecorator('avoidMotifs', {
@@ -152,7 +152,7 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
           </Form.Item>
         </FormSection>
 
-        <FormSection index={4} title="Parameters" open={false}>
+        <FormSection index={4} title="Parameters" open={true}>
           <></>
           <div className="workflow-cards">
             <Form.Item
