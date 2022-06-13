@@ -10,6 +10,7 @@ import withForm, {WithFormOuterProps} from 'src/utils/withForm'
 import {validateAvoidMotifs} from 'src/utils/validateAvoidMotifs'
 import {motifs} from 'src/config/motifs'
 import {geneValidationRule} from 'src/config/geneValidationRule'
+import {validateCodingSequence} from 'src/config/validateCodingSequence'
 import './styles.css'
 
 type FormOuterProps = {
@@ -101,6 +102,7 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
             <FileUploadInput onChange={this.onFileUpload('goiSequence')} />
             {getFieldDecorator('goiSequence', {
               rules: [
+                {validator: validateCodingSequence},
                 geneValidationRule,
                 {
                   required: true,
@@ -183,7 +185,15 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
                 </>
               }
             >
-              {getFieldDecorator('gcWindowSize')(<Input type="number" />)}
+              {getFieldDecorator('gcWindowSize', {
+              initialValue: 100,
+              rules: [
+                {
+                  required: true,
+                  message: 'GC window size is required',
+                },
+              ],
+            })(<Input type="number" />)}
             </Form.Item>
 
             <Form.Item
@@ -197,6 +207,7 @@ class Index extends React.PureComponent<FormInnerProps, {motifsOption: motifsOpt
               }
             >
               {getFieldDecorator('entropyWindowSize', {
+              initialValue: 30,
               rules: [
                 {
                   required: true,
