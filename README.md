@@ -13,6 +13,8 @@ More information about the tool and experiments performed for its evaluation is 
 > 
 >[bioRxiv link](https://www.biorxiv.org/content/10.1101/2022.04.04.486952v1)
 
+You can find brief manual on how to use the tool [here](./usage_manual/Manual.md).
+
 
 
 ## Local installation
