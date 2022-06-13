@@ -20,6 +20,7 @@ RUN conda env update -n base -f ./flask_app/environment.yml \
 
 COPY . /backend
 WORKDIR /backend/flask_app
+RUN chmod 777 /backend/flask_app/logs
 
 
 CMD ["uwsgi", "--ini", "app.ini:uwsgi-docker"]
