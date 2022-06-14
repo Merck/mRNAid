@@ -20,7 +20,6 @@ export type FormData = {
   gcContentGlobal: number
   gcWindowSize: number
   entropyWindowSize: number
-  fileName: string
   avoidMotifs: string[]
   organism: string
 }

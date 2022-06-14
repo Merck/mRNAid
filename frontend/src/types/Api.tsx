@@ -67,9 +67,9 @@ export type InputParameters = {
 
 export type RequestData = {
   sequences: {
-    five_end_flanking_sequence: string | null
-    gene_of_interest: string | null
-    three_end_flanking_sequence: string | null
+    five_end_flanking_sequence: string
+    gene_of_interest: string
+    three_end_flanking_sequence: string
   }
   uridine_depletion: boolean
   precise_MFE_algorithm: boolean

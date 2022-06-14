@@ -39,10 +39,6 @@ body {
   margin-bottom: 30px;
 }
 
-.DataInputForm-submitRow {
-  text-align: center;
-}
-
 .GeneTextArea textarea {
   font-family: 'Lucida Console', monospace;
   letter-spacing: 0.1em;
@@ -192,17 +188,6 @@ body {
 
 .GeneTextArea .has-success.has-feedback .ant-form-item-children:after {
   content: none;
-}
-.workflow-cards {
-    padding: 30px;
-}
-
-.workflow-card .ant-btn {
-    display: block;
-}
-
-.workflow-card-description {
-    min-height: 100px;
 }
 
 ul{
