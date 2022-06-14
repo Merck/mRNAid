@@ -34,7 +34,24 @@ th.PASFragmentSeqCol {
     width:25% !important
 }
 
+.ant-popover{
+    left: 20% !important;
+    max-width: 30%
+}
+.ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow{
+    left: 38% !important;
+}
+.question-circle{
+    color:#269487;
+    font-size: 17px !important;
+}
 
+.FormActions {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0;
+}
 
-
-
+.FormActions .ant-btn + .ant-btn {
+  margin-left: 5px;
+}

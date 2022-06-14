@@ -7,7 +7,6 @@ type MinOptMaxInputsProps = Pick<WrappedFormUtils, 'getFieldDecorator' | 'getFie
   fieldPrefix: string
   defaults: {
     min?: number
-    opt?: number
     max?: number
   }
   disabled: boolean
@@ -24,7 +23,8 @@ const MinOptMaxInputs = ({
     if (getFieldValue('gcContentMin') >= getFieldValue('gcContentMax')) {
       message.error('gcContentMin should be smaller than gcContentMax ')
     }
-    if (isEmpty(getFieldValue(fieldName))) {
+    const value = getFieldValue(fieldName)
+    if (isEmpty(value) || value < 0 || value > 100) {
       resetFields([fieldName])
     }
   }

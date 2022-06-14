@@ -10,7 +10,7 @@ const formatString = (text: string) => {
       return formattedText
     }
   }
-  return null
+  return ''
 }
 
 export const formDataToRequest = (formData: FormData) => ({
@@ -28,7 +28,7 @@ export const formDataToRequest = (formData: FormData) => ({
   match_codon_pair: Boolean(formData.matchCodonPair),
   precise_MFE_algorithm: Boolean(formData.preciseMFEAlgorithm),
   dinucleotides: Boolean(formData.dinucleotides),
-  file_name: formData.fileName || '',
+  file_name: 'results',
   CAI: Boolean(formData.cAI),
 
   sequences: {
@@ -82,7 +82,7 @@ export const dataToFormData = (formData: FormData) => {
     gcContentGlobal: requestData.gcContentGlobal,
     gcWindowSize: requestData.gcWindowSize,
     entropyWindowSize: requestData.entropyWindowSize,
-    fileName: requestData.fileName,
+    fileName: 'results',
     avoidMotifs: requestData.avoidMotifs,
   }
 }
