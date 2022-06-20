@@ -52,6 +52,7 @@ export type InputParameters = {
   five_end: string
   three_end: string
   input_mRNA: string
+  organism: string
   usage_threshold: string
   uridine_depletion: string
   avoid_motifs: string
