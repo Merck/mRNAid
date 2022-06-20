@@ -4,7 +4,7 @@ from typing import Tuple
 
 import RNA
 from Bio.Seq import Seq
-from Bio.SeqUtils.CodonUsage import CodonAdaptationIndex
+from Bio.SeqUtils.CodonUsage import CodonAdaptationIndex, SynonymousCodons
 from billiard import Pool
 from dnachisel import Location
 from dnachisel import MatchTargetCodonUsage
@@ -159,21 +159,32 @@ class Evaluation(object):
             for i in range(int(len(sequence) / 3))
         ]
 
+    def _get_max_frequency(self, codon, usage_table):
+        """
+        Get frequency of the most frequent synonymous codon to codon for that amino-acid - the scaling factor in the
+        RCSU value (CAI is the geometric mean of RCSU values of codons)
+        """
+        synonymous_codons = [codons for (aa, codons) in SynonymousCodons.items() if codon in codons][0]
+        max_freq = max([usage_table[codon] for codon in synonymous_codons])
+        return max_freq
+
     def codon_table_to_biopython_index(self, codon_table: dict) -> dict:
         """Transforms table from python-codon-table library to biopython index format"""
         amino_acids = ['*', 'A', 'R', 'N', 'D', 'C', 'Q', 'E', 'G', 'H', 'I',
                        'L', 'K', 'M', 'F', 'P', 'S', 'T', 'W', 'Y', 'V']
 
         dicts = [codon_table[aa] for aa in amino_acids]
-        return {key.replace('T', 'U'): val for dic in dicts for (key, val) in dic.items()}
+        simple_usage_table = {key: val for dic in dicts for (key, val) in dic.items()}
+        return {key: val / self._get_max_frequency(key, simple_usage_table) for key, val in simple_usage_table.items()}
 
     def CAI(self, sequence: str) -> float:
         """Calculates Codon Adaptation Index for a given sequence"""
+        sequence = sequence.replace('U', 'T')
         cai_estimator = CodonAdaptationIndex()
         codon_table = get_codons_table(self.organism)
         index = self.codon_table_to_biopython_index(codon_table)
         cai_estimator.set_cai_index(index)
-        return cai_estimator.cai_for_gene(sequence.replace('T', 'U'))
+        return cai_estimator.cai_for_gene(sequence)
 
     def get_seq_properties(self, tag_seq: Tuple) -> SequenceProperties:
         """
