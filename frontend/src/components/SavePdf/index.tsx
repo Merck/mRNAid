@@ -80,7 +80,7 @@ class SavePdf extends React.PureComponent<SavePdfProps> {
             <Text style={styles.subtitle}>mRNA Sequence: {inputParameters.input_mRNA}</Text>
           </View>
           <View>
-            <Text style={styles.subtitle}>Codon Usage: h_sapiens</Text>
+            <Text style={styles.subtitle}>Codon Usage: {inputParameters.organism}</Text>
             <Text style={styles.subtitle}>Codon Usage freq.threshold: {inputParameters.usage_threshold}</Text>
             <Text style={styles.subtitle}>Uridine depletion: {inputParameters.uridine_depletion}</Text>
             <Text style={styles.subtitle}>avoid Motifs: {inputParameters.avoid_motifs}</Text>
