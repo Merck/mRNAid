@@ -47,7 +47,7 @@ services:
       - CELERY_BROKER_URL=redis://redis_db:6379
       - CELERY_RESULT_BACKEND=redis://redis_db:6379
     ports:
-      - "5555:5555"
+      - "172.30.36.140:8801:5555"
     depends_on:
       - worker
 
@@ -56,4 +56,4 @@ services:
     container_name: frontend
     restart: always
     ports:
-      - "80:8000"
+      - "172.30.36.140:8800:80"
