@@ -51,10 +51,9 @@ services:
     depends_on:
       - worker
 
-
   frontend:
     build: ./frontend
     container_name: frontend
     restart: always
     ports:
-      - "80:80"
+      - "80:8000"
