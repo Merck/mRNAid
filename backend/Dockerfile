@@ -1,4 +1,4 @@
-FROM condaforge/miniforge3
+FROM python:3.9
 
 RUN apt-get update -y \
         && apt-get install -y --no-install-recommends \
@@ -12,11 +12,13 @@ ENV PATH /opt/miniconda/bin:$PATH
 RUN useradd docker
 WORKDIR /backend
 
-COPY ./flask_app/environment.yml ./flask_app/environment.yml
+COPY ./flask_app/requirements.txt ./flask_app/requirements.txt
 
-RUN conda env update -n base -f ./flask_app/environment.yml \
-    && rm -rf /tmp/* \
-    && conda clean --all
+#RUN conda env update -n base -f ./flask_app/environment.yml \
+#    && rm -rf /tmp/* \
+#    && conda clean --all
+
+RUN pip install -r ./flask_app/requirements.txt
 
 COPY . /backend
 WORKDIR /backend/flask_app
@@ -24,3 +26,4 @@ RUN chmod 777 /backend/flask_app/logs
 
 
 CMD ["uwsgi", "--ini", "app.ini:uwsgi-docker"]
+
