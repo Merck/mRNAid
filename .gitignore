@@ -7,3 +7,5 @@ env/
 redis*
 *.rdb
 .scannerwork/   
+*.egg-info
+example.json

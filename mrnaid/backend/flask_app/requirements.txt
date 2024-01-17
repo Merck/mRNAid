@@ -1,0 +1,17 @@
+flask
+flask-cors
+uWSGI
+viennarna
+dnachisel
+pytest
+redis
+celery
+Biopython<1.82 # Due to missing CodonUsage module
+proglog
+docopt
+flametree
+python_codon_tables
+pydantic
+scipy == 1.6.0
+loguru
+flower

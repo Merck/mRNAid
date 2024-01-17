@@ -1,7 +1,7 @@
 import json
 import os
 
-import scipy
+import numpy as np
 from Evaluation import Evaluation
 from OptimizationProblems import initialize_optimization_problem
 from OptimizationTask import optimization_task
@@ -21,7 +21,7 @@ celery = Celery('tasks', broker=CELERY_BROKER_URL, backend=CELERY_RESULT_BACKEND
 
 
 def init_pool():
-    scipy.random.seed()
+    np.random.seed()
 
 
 @celery.task()
