@@ -1,5 +1,7 @@
 # mRNAid: mRNA optimization tool
 
+![PyPI - Version](https://img.shields.io/pypi/v/mRNAid)
+
 mRNAid is an experimentally validated open-source tool for optimization and visualisation of mRNA molecules. It features
  different optimization strategies based on user preferences.
 
