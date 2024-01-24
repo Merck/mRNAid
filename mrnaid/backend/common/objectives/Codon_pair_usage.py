@@ -8,6 +8,9 @@ from utils.Logger import MyLogger
 
 logger = MyLogger(__name__)
 
+DEFAULT_BACKEND_OBJECTIVES_DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+BACKEND_OBJECTIVES_DATA = os.environ.get('BACKEND_OBJECTIVES_DATA', DEFAULT_BACKEND_OBJECTIVES_DATA)
+
 
 class MatchTargetCodonPairUsage(Specification):
     """ This class is used to specify the objective to match the target
@@ -18,7 +21,7 @@ class MatchTargetCodonPairUsage(Specification):
         super().__init__()
 
         if pair_usage_table is None:
-            with open(os.path.join(os.environ['BACKEND_OBJECTIVES_DATA'], f'codon_pair_usage_{species}.json'),
+            with open(os.path.join(BACKEND_OBJECTIVES_DATA, f'codon_pair_usage_{species}.json'),
                       'r') as myfile:
                 data = myfile.read()
             self.pair_usage_table = json.loads(data)

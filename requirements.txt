@@ -1,17 +1,14 @@
-flask
-flask-cors
-uWSGI
 viennarna
 dnachisel
-pytest
 redis
 celery
-Biopython
+Biopython<1.82 # Due to missing CodonUsage module
 proglog
 docopt
 flametree
 python_codon_tables
 pydantic
-scipy == 1.6.0
+numpy < 2
+scipy
 loguru
-flower
+click
