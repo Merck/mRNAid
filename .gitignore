@@ -9,3 +9,6 @@ redis*
 .scannerwork/   
 *.egg-info
 example.json
+build/
+dist/
+.ipynb_checkpoints

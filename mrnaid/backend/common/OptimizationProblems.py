@@ -26,8 +26,7 @@ def initialize_optimization_problem(parameters: OptimizationParameters) -> DnaOp
     objectives_creator = Objectives(parameters.entropy_window, parameters.organism,
                                     Location(0, len(parameters.input_DNA)), parameters.min_GC_content,
                                     parameters.max_GC_content, parameters.GC_window_size, parameters.five_end,
-                                    parameters.mfe_method, parameters.dinucleotides, parameters.codon_pair,
-                                    parameters.CAI)
+                                    parameters.mfe_method, parameters.optimization_criterion)
 
     try:
         objectives = objectives_creator.create_objectives()

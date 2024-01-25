@@ -19,9 +19,7 @@ class OptimizationParameters(BaseModel):
     number_of_sequences: int
     filename: str
     mfe_method: str
-    dinucleotides: bool
-    codon_pair: bool
-    CAI: bool
+    optimization_criterion: str
     location: Tuple[int, int, int]
 
 

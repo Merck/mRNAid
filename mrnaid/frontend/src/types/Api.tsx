@@ -53,6 +53,7 @@ export type InputParameters = {
   three_end: string
   input_mRNA: string
   organism: string
+  optimization_criterion: string
   usage_threshold: string
   uridine_depletion: string
   avoid_motifs: string
@@ -60,8 +61,6 @@ export type InputParameters = {
   max_GC_content: string
   GC_window_size: string
   entropy_window: string
-  dinucleotides: boolean
-  codon_pair: boolean
   number_of_sequences: number
   precise_MFE_algorithm: boolean
 }
@@ -74,7 +73,6 @@ export type RequestData = {
   }
   uridine_depletion: boolean
   precise_MFE_algorithm: boolean
-  dinucleotides: boolean
   file_name: string
   config: RequestConfig
 }

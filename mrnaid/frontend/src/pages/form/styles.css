@@ -55,3 +55,9 @@ th.PASFragmentSeqCol {
 .FormActions .ant-btn + .ant-btn {
   margin-left: 5px;
 }
+
+.verticalRadio {
+    display: block;
+    height: 30px;
+    lineHeight: 30px;
+}
