@@ -72,9 +72,9 @@ class NumberOfSequencesError(Exception):
         super().__init__(self.message)
 
 
-class IncompatibleOptimizationError(Exception):
-    """This error is raised when incompatible strategies for codon optimization"""
+class UnsupportedOptimizationError(Exception):
+    """This error is raised when unsupported criterion for codon optimization"""
 
-    def __init__(self):
-        self.message = 'Incompatible optimization strategies are selected for optimization!'
+    def __init__(self, message):
+        self.message = message
         super().__init__(self.message)

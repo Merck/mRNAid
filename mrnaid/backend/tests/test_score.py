@@ -1,4 +1,4 @@
-from utils.Evaluation import Evaluation
+from Evaluation import Evaluation
 from utils.Datatypes import OptimizationParameters
 import pytest
 

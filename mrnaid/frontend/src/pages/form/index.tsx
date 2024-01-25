@@ -16,10 +16,10 @@ const exampleForm: Partial<FormData> = {
     'CGCUUUGCCAAAGUUGGCCAGAAGCCCACGCAUUAAUUCUAGUGUGUGGGGAUGUGAAGAAUGUCCCGGAAAAGAUGUCCAUUGCGCUGGAGACCCUGGAUUGGCUACGCAUGAUCUCCUUCCCUAGACUUCGGUUCCUUCUAAGAGGUAUACUCCACAGCCCAGUUGGCCCAUAGAGACGCCUACUAACGAAACGGUCACUAUAGACCAAAAACUACGAUGUCCGCGAUGGAGAUACGCUGACUUACUACCCAUUCAUUCCGCGACAGUAGAGAAAAGACGACGGACUAUCAUUCUGAAGAGUCGUUCAAGUAGGAUUCCGGCCGACCUGUACCUAAAUGGCGUCCGUCCGGGUGUCCUUGUAACUGCCUAGAAACAGGAGCAGGACGGGAAGUCCUCGUAGUCCUAUCGUGGUUCUGGCCUCAAAUCCGCCCCGAAGAGUGAGCAACGACUCGUCGUACAUUUAGUCCACGGGAGAUCUGAACAAUCUCGGUGGUCUACCUUGCUUGUUUCGACACUUUCUUCCAUCCGAGCAAAUAUCGGGCUACCCACUUGAGGUAUGAGGGACCC',
   threePrimeFlankingSequence: 'UUGAGUGCAAUUUCCAAUGCAGCCUAC',
   uridineDepletion: true,
-  cAI: true,
   preciseMFEAlgorithm: false,
   organism: 'h_sapiens',
   codonUsageFrequencyThresholdPct: 10,
+  optimizationCriterion: 'codon_usage',
   numberOfSequences: 3,
   gcContentMin: 30,
   gcContentMax: 70,
@@ -36,9 +36,6 @@ type MotifsOptions = React.ReactElement[]
 
 type CompState = {
   motifsOption: MotifsOptions
-  dinucleotides: boolean
-  matchCodonPair: boolean
-  cAIOptimization: boolean
 }
 
 class Index extends React.PureComponent<FormInnerProps, CompState> {
@@ -47,9 +44,6 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
     const motifsOptions = motifs.map((element: string) => <Select.Option key={element}>{element}</Select.Option>)
     this.state = {
       motifsOption: motifsOptions,
-      dinucleotides: false,
-      matchCodonPair: false,
-      cAIOptimization: false,
     }
   }
 
@@ -78,23 +72,6 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
   handleExampleForm = (event: React.MouseEvent<HTMLInputElement>) => {
     event.preventDefault()
     this.props.form.setFieldsValue(exampleForm)
-    this.setState({
-      dinucleotides: exampleForm.dinucleotides || false,
-      matchCodonPair: exampleForm.matchCodonPair || false,
-      cAIOptimization: exampleForm.cAI || false,
-    })
-  }
-
-  handleDinucleotides = (value: boolean) => {
-    this.setState({dinucleotides: value})
-  }
-
-  handleMatchCodonPair = (value: boolean) => {
-    this.setState({matchCodonPair: value})
-  }
-
-  handleCAIOptimization = (value: boolean) => {
-    this.setState({cAIOptimization: value})
   }
 
   onFileUpload = (target: string) => (data: string) => {
@@ -105,6 +82,16 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
     })
   }
 
+  matchCodonUsage = (
+    <div>
+      <p>Match target codon frequencies based on codon usage in selected organism.</p>
+    </div>
+  )
+  cai = (
+    <div>
+      <p>Maximize Codon Adaptation Index (CAI) in selected organism.</p>
+    </div>
+  )
   dinucleotides = (
     <div>
       <p>
@@ -116,10 +103,9 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
           target="_blank"
           rel="noopener noreferrer"
         >
-          link.
-        </a>{' '}
-        If no optimization strategy for codons or nucleotides is chosen, then the default one is used. The default one
-        is the optimization of individual codon frequencies to the frequencies in the host (homo sapiens)
+          link
+        </a>
+        .
       </p>
     </div>
   )
@@ -134,10 +120,9 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
           target="_blank"
           rel="noopener noreferrer"
         >
-          link.
-        </a>{' '}
-        If no optimization strategy for codons or nucleotides is chosen, then the default one is used. The default one
-        is the optimization of individual codon frequencies to the frequencies in the host (homo sapiens)
+          link
+        </a>
+        .
       </p>
     </div>
   )
@@ -225,77 +210,48 @@ class Index extends React.PureComponent<FormInnerProps, CompState> {
 
           <Row gutter={10}>
             <Col>
+              <Form.Item label={<span>Optimization Criterion</span>}>
+                {getFieldDecorator('optimizationCriterion', {
+                  initialValue: 'codon_usage',
+                })(
+                  <Radio.Group>
+                    <Radio className="verticalRadio" value="codon_usage">
+                      Match codon usage{' '}
+                      <Popover content={this.matchCodonUsage}>
+                        <Icon type="question-circle" className="question-circle" />
+                      </Popover>
+                    </Radio>
+                    <Radio className="verticalRadio" value="cai">
+                      Maximize Codon Adaptation Index (CAI){' '}
+                      <Popover content={this.cai}>
+                        <Icon type="question-circle" className="question-circle" />
+                      </Popover>
+                    </Radio>
+                    <Radio className="verticalRadio" value="dinucleotides">
+                      Match dinucleotides usage{' '}
+                      <Popover content={this.dinucleotides}>
+                        <Icon type="question-circle" className="question-circle" />
+                      </Popover>
+                    </Radio>
+                    <Radio className="verticalRadio" value="codon_pair">
+                      Match codon pair usage{' '}
+                      <Popover content={this.matchCodonPair}>
+                        <Icon type="question-circle" className="question-circle" />
+                      </Popover>
+                    </Radio>
+                  </Radio.Group>,
+                )}
+              </Form.Item>
+            </Col>
+          </Row>
+
+          <Row gutter={10}>
+            <Col>
               <Form.Item label="Uridine depletion">
                 {getFieldDecorator('uridineDepletion', {
                   initialValue: false,
                   valuePropName: 'checked',
                 })(<Switch />)}
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={10}>
-            <Col>
-              <Form.Item
-                label={
-                  <>
-                    <span>Match dinucleotides usage </span>
-                    <Popover content={this.dinucleotides}>
-                      <Icon type="question-circle" className="question-circle" />
-                    </Popover>
-                  </>
-                }
-              >
-                {getFieldDecorator('dinucleotides', {
-                  initialValue: false,
-                  valuePropName: 'checked',
-                })(
-                  <Switch
-                    onChange={this.handleDinucleotides}
-                    disabled={!!(this.state.matchCodonPair === true || this.state.cAIOptimization === true)}
-                  />,
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={10}>
-            <Col>
-              <Form.Item
-                label={
-                  <>
-                    <Popover content={this.matchCodonPair}>
-                      <span>Match codon pair usuage </span>
-                      <Icon type="question-circle" className="question-circle" />
-                    </Popover>
-                  </>
-                }
-              >
-                {getFieldDecorator('matchCodonPair', {
-                  initialValue: false,
-                  valuePropName: 'checked',
-                })(
-                  <Switch
-                    onChange={this.handleMatchCodonPair}
-                    disabled={!!(this.state.dinucleotides === true || this.state.cAIOptimization === true)}
-                  />,
-                )}
-              </Form.Item>
-            </Col>
-          </Row>
-
-          <Row gutter={10}>
-            <Col>
-              <Form.Item label="CAI optimization">
-                {getFieldDecorator('cAI', {
-                  initialValue: false,
-                  valuePropName: 'checked',
-                })(
-                  <Switch
-                    onChange={this.handleCAIOptimization}
-                    disabled={!!(this.state.dinucleotides === true || this.state.matchCodonPair === true)}
-                  />,
-                )}
               </Form.Item>
             </Col>
           </Row>

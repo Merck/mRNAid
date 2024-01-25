@@ -37,8 +37,8 @@ class Evaluation(object):
         self.five_end = parameters.five_end.replace('T', 'U')
         self.three_end = parameters.three_end.replace('T', 'U')
         self.evaluation_dict = {}
-        self.dinucleotides = parameters.dinucleotides
-        self.codon_pair = parameters.codon_pair
+        self.dinucleotides = parameters.optimization_criterion == 'dinucleotides'
+        self.codon_pair = parameters.optimization_criterion == 'codon_pair'
 
     def score(self, sequence: str, gc_ratio: float, mfe5: float, mfe_total: float) -> float:
         """

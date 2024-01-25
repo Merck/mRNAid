@@ -24,10 +24,8 @@ def optimize(
     organism='h_sapiens',
     entropy_window=30,
     mfe_method='stem-loop',
-    dinucleotides=False,
-    codon_pair=False,
-    disable_cai=False,
-    disable_uridine_depletion=False,
+    optimization_criterion='codon_usage',
+    uridine_depletion=False,
 ):
     """
     Optimize a given mRNA sequence.
@@ -39,19 +37,17 @@ def optimize(
     - input_mrna (str): The original mRNA sequence to be optimized.
     - five_end (str): Sequence to be added at the 5' end of the mRNA.
     - three_end (str): Sequence to be added at the 3' end of the mRNA.
+    - optimization_criterion (str, optional): Optimization criterion: codon_usage (default) / cai / dinucleotides / codon_pair
     - number_of_sequences (int, optional): The number of optimized sequences to generate. Default is 3.
     - avoid_motifs (list of str, optional): Motifs to be avoided in the optimized mRNA sequence.
     - max_gc_content (float, optional): Maximum allowable GC content in the sequence. Default is 0.7.
     - min_gc_content (float, optional): Minimum allowable GC content in the sequence. Default is 0.3.
     - gc_window_size (int, optional): Size of the window used to calculate GC content. Default is 100 nucleotides.
     - usage_threshold (float, optional): Threshold for codon usage frequency. Default is 0.1 (10%).
-    - organism (str, optional): Target organism for codon usage optimization. Default is 'h_sapiens' (human).
+    - organism (str, optional): Target organism for codon usage optimization. Options are 'h_sapiens' (default), or 'm_musculus'.
     - entropy_window (int, optional): Size of the window used to calculate sequence entropy. Default is 30.
     - mfe_method (str, optional): Method used for minimum free energy calculation. Default is 'stem-loop', more precise slower option is 'RNAfold'.
-    - dinucleotides (bool, optional): Whether to consider dinucleotide optimization. Default is False.
-    - codon_pair (bool, optional): Whether to optimize based on codon pair usage. Default is False.
-    - disable_cai (bool, optional): If True, disables codon adaptation index optimization. Default is False.
-    - disable_uridine_depletion (bool, optional): If True, disables uridine depletion optimization. Default is False.
+    - uridine_depletion (bool, optional): If True, enables uridine depletion constraint. Default is False.
 
     Returns:
     JSON-like data structure with current configuration and output list of optimized mRNA sequences and their properties.
@@ -71,14 +67,12 @@ def optimize(
         min_GC_content=min_gc_content,
         GC_window_size=gc_window_size,
         usage_threshold=usage_threshold,
-        uridine_depletion=not disable_uridine_depletion,
+        uridine_depletion=uridine_depletion,
         organism=organism,
         entropy_window=entropy_window,
         number_of_sequences=number_of_sequences,
         mfe_method=mfe_method,
-        dinucleotides=dinucleotides,
-        codon_pair=codon_pair,
-        CAI=not disable_cai,
+        optimization_criterion=optimization_criterion,
         filename='unused',
         location=(0, len(input_mrna) - len(input_mrna) % 3, 1),
     ))
@@ -92,6 +86,7 @@ def optimize(
 @click.option('--five-end', required=True, help='')
 @click.option('--three-end', required=True, help='')
 # Optional arguments
+@click.option('--optimization-criterion', default='codon_usage', help='Optimization criterion: codon_usage (default) / cai / dinucleotides / codon_pair')
 @click.option('--number-of-sequences', default=3, type=int, help='')
 @click.option('--avoid-motifs', default='', help='')
 @click.option('--max-GC-content', default=0.7, type=float, help='')
@@ -101,10 +96,7 @@ def optimize(
 @click.option('--organism', default='h_sapiens', help='')
 @click.option('--entropy-window', default=30, type=int, help='')
 @click.option('--mfe-method', default='stem-loop', help='stem-loop or RNAfold')
-@click.option('--dinucleotides', default=False, is_flag=True, help='')
-@click.option('--codon-pair', default=False, is_flag=True, help='')
-@click.option('--disable-uridine-depletion', default=True, is_flag=True, help='')
-@click.option('--disable-CAI', is_flag=True, default=True, help='Do not use Codon Adaptation Index')
+@click.option('--uridine-depletion', default=True, is_flag=True, help='') # TODO hep
 def optimize_cli(output, **parameters):
     print(f"""
             _____  _   _          _     _ 

@@ -7,13 +7,11 @@ export type FormData = {
   threePrimeFlankingSequence: string
   useDegeneracyCodon: boolean
   uridineDepletion: boolean
-  cAI: boolean
   preciseMFEAlgorithm: boolean
-  dinucleotides: boolean
-  matchCodonPair: boolean
   codonUsage: string
   taxonomyId: string
   codonUsageFrequencyThresholdPct: number
+  optimizationCriterion: string
   numberOfSequences: number
   gcContentMin: number
   gcContentMax: number

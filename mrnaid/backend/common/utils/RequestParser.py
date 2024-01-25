@@ -117,23 +117,8 @@ class RequestParser(object):
         else:
             mfe_method = 'stem-loop'
 
-        # --- Get the dinucleotides usage boolean value ---
-        dinucleotides = self.data['dinucleotides']
-        if dinucleotides is None:
-            logger.warning('Dinucleotides optimization option is not specified! Setting it to False')
-            dinucleotides = False
-
-        # --- Get the codon pair usage boolean value ---
-        codon_pair = self.data['match_codon_pair']
-        if codon_pair is None:
-            logger.warning('Codon pair usage option is not specified! Setting it to False')
-            codon_pair = False
-
-        # --- Get the CAI optimization boolean value
-        CAI = self.data['CAI']
-        if CAI is None:
-            logger.warning('CAI optimization is not specified! Setting it to False')
-            CAI = False
+        # --- Get the optimization criterion string value
+        optimization_criterion = self.data['optimization_criterion']
 
         # --- Combining all the parameters together ---
         return OptimizationParameters(input_mRNA=input_mRNA,
@@ -151,7 +136,5 @@ class RequestParser(object):
                                       number_of_sequences=number_of_sequences,
                                       filename=filename,
                                       mfe_method=mfe_method,
-                                      dinucleotides=dinucleotides,
-                                      codon_pair=codon_pair,
-                                      CAI=CAI,
+                                      optimization_criterion=optimization_criterion,
                                       location=(0, len(input_mRNA) - len(input_mRNA) % 3, 1))
