@@ -40,6 +40,8 @@ mrnaid optimize \
 # See all arguments using mrnaid optimize --help
 ```
 
+The results will be stored in the output JSON file, see example [here](notebooks/01_mRNAid_example_usage.ipynb).
+
 You can also invoke mRNAid directly from Python:
 ```python
 from mrnaid import optimize
