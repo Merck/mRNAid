@@ -96,7 +96,7 @@ def optimize(
 @click.option('--organism', default='h_sapiens', help='')
 @click.option('--entropy-window', default=30, type=int, help='')
 @click.option('--mfe-method', default='stem-loop', help='stem-loop or RNAfold')
-@click.option('--uridine-depletion', default=True, is_flag=True, help='') # TODO hep
+@click.option('--uridine-depletion', default=False, is_flag=True, help='')
 def optimize_cli(output, **parameters):
     print(f"""
             _____  _   _          _     _ 
