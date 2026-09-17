@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@react-pdf/renderer": "^2.1.1",
-    "antd": "^3.26.20",
+    "antd": "^6.6.4",
     "assert": "^2.0.0",
     "axios": "^0.26.1",
     "browserify-zlib": "^0.2.0",
